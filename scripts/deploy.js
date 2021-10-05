@@ -1,10 +1,3 @@
-/******************************************************************************
-**	@Author:				Thomas Bouder <Tbouder>
-**	@Email:					Tbouder@protonmail.com
-**	@Date:					Sunday October 3rd 2021
-**	@Filename:				deploy.js
-******************************************************************************/
-
 async function main() {
     //Compile
     await hre.run("clean");
