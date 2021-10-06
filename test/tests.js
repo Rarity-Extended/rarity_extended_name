@@ -37,9 +37,26 @@ describe('Tests', () => {
 		adventurerPool.push(nextAdventurer);	
 	})
 
-	it('should be possible to set_name', async function() {
+	it('should be possible to set_name : John', async function() {
 		await expect(rarityExtendedName.set_name(adventurerPool[0], 'John', {from: user.address})).not.to.be.reverted;
 	})
+
+	it('should not be possible to set_name : []382hdebnkjdnw187/', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], '[]382hdebnkjdnw187/', {from: user.address})).to.be.reverted;
+	})
+	it('should not be possible to set_name :    Hello', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], '   Hello', {from: user.address})).to.be.reverted;
+	})
+	it('should not be possible to set_name : Hello   ', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], 'Hello   ', {from: user.address})).to.be.reverted;
+	})
+	it('should not be possible to set_name : Hel  lo', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], 'Hel  lo', {from: user.address})).to.be.reverted;
+	})
+	it('should not be possible to set_name : Hell0', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], 'Hell0', {from: user.address})).to.be.reverted;
+	})
+
 	
 	it('should be possible to get the name of the Adventurer', async function() {
 		const	names = await rarityExtendedName.get_name(adventurerPool[0]);

@@ -69,6 +69,12 @@ contract rarity_extended_name {
 
             if (char == 0x20 && last_char == 0x20)
                 return false; // Cannot contain continous spaces
+            if (char == 0x2D && last_char == 0x2D)
+                return false; // Cannot contain continous -
+            if (char == 0x20 && last_char == 0x2D)
+                return false; // Cannot contain space before -
+            if (char == 0x2D && last_char == 0x20)
+                return false; // Cannot contain - after space
 
             if (
                 !(char >= 0x41 && char <= 0x5A) && //A-Z
