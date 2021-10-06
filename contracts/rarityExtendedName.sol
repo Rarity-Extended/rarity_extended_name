@@ -35,7 +35,7 @@ contract rarity_extended_name {
     */
     function set_name(uint _adventurer, string memory _name) external {
         require(_isApprovedOrOwner(_adventurer));
-        require(validate_name(name), 'invalid name');
+        require(validate_name(_name), 'invalid name');
         adventurers_name[_adventurer] = _name;
         name_is_set[_adventurer] = true;
         emit NameSet(_adventurer, _name);

@@ -56,6 +56,21 @@ describe('Tests', () => {
 	it('should not be possible to set_name : Hell0', async function() {
 		await expect(rarityExtendedName.set_name(adventurerPool[0], 'Hell0', {from: user.address})).to.be.reverted;
 	})
+	it('should not be possible to set_name : Hello-', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], 'Hello-', {from: user.address})).to.be.reverted;
+	})
+	it('should not be possible to set_name : -Hello', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], '-Hello', {from: user.address})).to.be.reverted;
+	})
+	it('should not be possible to set_name : H- ello', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], 'H- ello', {from: user.address})).to.be.reverted;
+	})
+	it('should not be possible to set_name : He -llo', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], 'He -llo', {from: user.address})).to.be.reverted;
+	})
+	it('should not be possible to set_name : He--llo', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], 'He--llo', {from: user.address})).to.be.reverted;
+	})
 
 	
 	it('should be possible to get the name of the Adventurer', async function() {
