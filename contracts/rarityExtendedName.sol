@@ -19,6 +19,7 @@ contract rarity_extended_name {
     mapping(uint => bool) private name_is_set;
 
     event NameSet(uint indexed summoner, string name);
+    event NameUnset(uint indexed summoner);
 
     /**
     **  @dev Check if the msg.sender has the autorization to act on this adventurer
@@ -39,6 +40,17 @@ contract rarity_extended_name {
         adventurers_name[_adventurer] = _name;
         name_is_set[_adventurer] = true;
         emit NameSet(_adventurer, _name);
+    }
+
+    /**
+    **  @dev unset the name of an adventurer
+    **  @param _adventurer tokenID of the adventurer to unset a name to
+    */
+    function unset_name(uint _adventurer) external {
+        require(_isApprovedOrOwner(_adventurer));
+        adventurers_name[_adventurer] = '';
+        name_is_set[_adventurer] = false;
+        emit NameUnset(_adventurer);
     }
     
     /**

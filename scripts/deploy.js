@@ -8,6 +8,7 @@ async function main() {
     this.Contract = await this.Contract.deploy();
     console.log("Deployed to:", this.Contract.address);
 
+    await this.Contract.deployed();
 
     await hre.run("verify:verify", {
 		address: this.Contract.address,

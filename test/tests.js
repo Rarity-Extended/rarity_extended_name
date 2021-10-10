@@ -71,8 +71,21 @@ describe('Tests', () => {
 	it('should not be possible to set_name : He--llo', async function() {
 		await expect(rarityExtendedName.set_name(adventurerPool[0], 'He--llo', {from: user.address})).to.be.reverted;
 	})
+	it('should be possible to get the name of the Adventurer', async function() {
+		const	names = await rarityExtendedName.get_name(adventurerPool[0]);
+		expect(names).to.be.equal('John');
+	})
+	it('should be possible to unset the name of the Adventurer', async function() {
+		await expect(rarityExtendedName.unset_name(adventurerPool[0], {from: user.address})).not.to.be.reverted;
+	})
+	it('should be possible to get the no name for the Adventurer', async function() {
+		const	names = await rarityExtendedName.get_name(adventurerPool[0]);
+		expect(names).to.be.equal('');
+	})
 
-	
+	it('should be possible to set_name : John', async function() {
+		await expect(rarityExtendedName.set_name(adventurerPool[0], 'John', {from: user.address})).not.to.be.reverted;
+	})
 	it('should be possible to get the name of the Adventurer', async function() {
 		const	names = await rarityExtendedName.get_name(adventurerPool[0]);
 		expect(names).to.be.equal('John');
